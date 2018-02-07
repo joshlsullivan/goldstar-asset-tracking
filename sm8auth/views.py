@@ -9,14 +9,14 @@ client_id = '860242'
 client_secret = 'fe155688cf6e4245a46b0cc4bdd4c56b'
 authorization_base_url = 'https://go.servicem8.com/oauth/authorize'
 token_url = 'https://go.servicem8.com/oauth/access_token'
-redirect_uri = 'https://misllc.ngrok.io/callback'
+redirect_uri = 'https://warm-earth-88738.herokuapp.com/callback'
 scope = [
     'manage_customers'
 ]
 
 def subscribe(access_token):
     url = "https://api.servicem8.com/webhook_subscriptions"
-    payload = {'object':'company','fields':'uuid','callback_url':'https://misllc.ngrok.io/webhook/'}
+    payload = {'object':'company','fields':'uuid','callback_url':'https://warm-earth-88738.herokuapp.com/webhook/'}
     headers = {
         'Authorization': 'Bearer {}'.format(access_token)
     }
