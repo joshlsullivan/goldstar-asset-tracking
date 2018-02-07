@@ -1,0 +1,112 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://platform.servicem8.com/sdk/1.0/sdk.css">
+    <script src="https://platform.servicem8.com/sdk/1.0/sdk.js"></script>
+    <script type="text/javascript">
+      var client = SMClient.init();
+    </script>
+  </head>
+  <body style="margin: 0 10px;">
+    <table>
+      <caption>Performance</caption>
+      <tr>
+        <th>Total Jobs</th>
+        <th>Total Maintenance Jobs</th>
+        <th>Maintenance Hit Rate</th>
+        <th>Total Systems w/ Contract</th>
+        <th>Total Systems w/out Contract</th>
+      </tr>
+      <tr>
+        <td>{{ total_jobs }}</td>
+        <td>{{ total_maintenance_jobs }}</td>
+        <td>{{ maintenance_hit_rate|floatformat }}%</td>
+        <td>{{ total_clients_contract }}</td>
+        <td>{{ total_clients_non_contract }}</td>
+      </tr>
+    </table>
+    <table>
+      <caption>Systems</caption>
+      <tr>
+        <th>System Type</th>
+        <th>Audible</th>
+        <th>Monitored</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>Access Control</td>
+        <td>{{ access_control_audible }}</td>
+        <td>{{ access_control_monitored }}</td>
+        <td>{{ access_control_total }}</td>
+      </tr>
+      <tr>
+        <td>Alarm</td>
+        <td>{{ alarm_audible }}</td>
+        <td>{{ alarm_monitored }}</td>
+        <td>{{ alarm_total }}</td>
+      </tr>
+      <tr>
+        <td>CCTV</td>
+        <td>{{ cctv_audible }}</td>
+        <td>{{ cctv_monitored }}</td>
+        <td>{{ cctv_total }}</td>
+      </tr>
+      <tr>
+        <td>Door Entry</td>
+        <td>{{ door_entry_audible }}</td>
+        <td>{{ door_entry_monitored }}</td>
+        <td>{{ door_entry_total }}</td>
+      </tr>
+      <tr>
+        <td>Emergency Lights</td>
+        <td>{{ emergency_lights_audible }}</td>
+        <td>{{ emergency_lights_monitored }}</td>
+        <td>{{ emergency_lights_total }}</td>
+      </tr>
+      <tr>
+        <td>Fire Alarm</td>
+        <td>{{ fire_alarm_audible }}</td>
+        <td>{{ fire_alarm_monitored }}</td>
+        <td>{{ fire_alarm_total }}</td>
+      </tr>
+      <tr>
+        <td>Fire Extinguisher</td>
+        <td>{{ fire_extinguisher_audible }}</td>
+        <td>{{ fire_extinguisher_monitored }}</td>
+        <td>{{ fire_extinguisher_total }}</td>
+      </tr>
+      <tr>
+        <td>Key Holding</td>
+        <td>{{ key_holding_audible }}</td>
+        <td>{{ key_holding_monitored }}</td>
+        <td>{{ key_holding_total }}</td>
+      </tr>
+      <tr>
+        <td>Nurse Call</td>
+        <td>{{ nurse_call_audible }}</td>
+        <td>{{ nurse_call_monitored }}</td>
+        <td>{{ nurse_call_total }}</td>
+      </tr>
+      <tr>
+        <td>Refuge</td>
+        <td>{{ refuge_audible }}</td>
+        <td>{{ refuge_monitored }}</td>
+        <td>{{ refuge_total }}</td>
+      </tr>
+    </table>
+    <table>
+      <caption>KPI</caption>
+      <tr>
+        <th>Average Response Time</th>
+        <th>Longest Response Time</th>
+        <th>Shortest Response Time</th>
+      </tr>
+      <tr>
+        <td>{{ total_jobs }}</td>
+        <td>{{ total_maintenance_jobs }}</td>
+        <td>{{ total_clients_non_contract }}</td>
+      </tr>
+    </table>
+  </body>
+</html>

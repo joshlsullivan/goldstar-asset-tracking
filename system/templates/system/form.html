@@ -1,0 +1,11 @@
+{% extends "system/base.html" %}
+{% comment "template_location" %}
+    'system/ajax.html'
+{% endcomment %}
+{% block content %}
+    <form id='system-form' method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'>
+        {% csrf_token %}
+        {{form.as_p|safe}}
+        <button type='submit'>Submit</button>
+    </form>
+{% endblock content %}

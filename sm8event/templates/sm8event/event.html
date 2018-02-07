@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://platform.servicem8.com/sdk/1.0/sdk.css">
+    <script src="https://platform.servicem8.com/sdk/1.0/sdk.js"></script>
+    <script type="text/javascript">
+      var client = SMClient.init();
+    </script>
+  </head>
+  <body>
+    <ul style="list-style-type:none">
+      {% for system in systems %}
+      <li><strong>System Type: {{ system.get_system_type_display }}</strong></li>
+      <li>Contracted: {{ system.get_contracted_display }}</li>
+      <li>Contract Date: {{ system.contract_date }}</li>
+      <li>Install Date: {{ system.install_date }}</li>
+      <li>Maintenance Interval: {{ system.get_maintenance_interval_display }}</li>
+      <li>Monitoring Type: {{ system.get_monitoring_type_display }}</li>
+      <li>Monitoring Acct Number: {{ system.monitoring_acct_num }}</li>
+      <li>Maintenance Form Setup: {{ system.get_maintenance_form_setup_display }}</li>
+      <li>URN Intruder: {{ system.urn_intruder }}</li>
+      <li>URN PA: {{ system.urn_pa }}</li>
+      {% endfor %}
+    </ul>
+    <button onClick="client.closeWindow();">Close Window</button>
+  </body>
+</html>
