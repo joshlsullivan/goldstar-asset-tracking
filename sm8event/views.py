@@ -18,9 +18,8 @@ def process_category(category_uuid, token):
     headers = {'Authorization':'Bearer {}'.format(token)}
     r = requests.get(url, headers=headers)
     category = r.json()
-    name = category['name']
-    print(name)
-    return name
+    print(category)
+    return "OK"
 
 def process_job(customer_resource_url, token):
     url = customer_resource_url
