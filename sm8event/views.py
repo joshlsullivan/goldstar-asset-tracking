@@ -22,7 +22,7 @@ def process_category(category_uuid, token):
     if name:
         return name
     else:
-        return ''
+        return None
 
 def process_job(customer_resource_url, token):
     url = customer_resource_url
