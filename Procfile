@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn servicem8sm8_asset_tracking.wsgi
