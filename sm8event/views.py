@@ -19,7 +19,10 @@ def process_category(category_uuid, token):
     r = requests.get(url, headers=headers)
     category = r.json()
     name = category['name']
-    return name
+    if name:
+        return name
+    else:
+        return ''
 
 def process_job(customer_resource_url, token):
     url = customer_resource_url
