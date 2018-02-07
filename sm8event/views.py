@@ -19,11 +19,8 @@ def process_category(category_uuid, token):
     r = requests.get(url, headers=headers)
     category = r.json()
     name = category['name']
-    if not name:
-        print("Empty list")
-        return ''
-    else:
-        return name
+    print(name)
+    return name
 
 def process_job(customer_resource_url, token):
     url = customer_resource_url
@@ -32,7 +29,9 @@ def process_job(customer_resource_url, token):
     r = requests.get(url, headers=headers)
     job = r.json()
     client = Client.objects.get(client_uuid=job['company_uuid'])
-    j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid'], token))
+    process_category(job['category_uuid'], token)
+    #j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid'], token))
+    j = client.job_set.create(job_uuid=job['uuid'])
     print(j)
     return j
 
