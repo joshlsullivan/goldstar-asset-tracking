@@ -18,8 +18,8 @@ def process_category(category_uuid, token):
     headers = {'Authorization':'Bearer {}'.format(token)}
     r = requests.get(url, headers=headers)
     category = r.json()
-    print(category)
-    return "OK"
+    name = category['name']
+    return name
 
 def process_job(customer_resource_url, token):
     url = customer_resource_url
@@ -28,8 +28,7 @@ def process_job(customer_resource_url, token):
     r = requests.get(url, headers=headers)
     job = r.json()
     client = Client.objects.get(client_uuid=job['company_uuid'])
-    process_category(job['category_uuid'], token)
-    #j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid'], token))
+    j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid'], token))
     j = client.job_set.create(job_uuid=job['uuid'])
     print(j)
     return j
