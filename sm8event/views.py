@@ -45,7 +45,7 @@ def process_task(customer_resource_url, token):
         job = Job.objects.get(job_uuid=task['related_object_uuid'])
         job_created_time = job.created
         task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
-        task_due_date = datetime.datetime.strptime(task['due_date'], '%Y-%m-%d %H:%M:%S')
+        task_due_date = datetime.datetime.strptime(task['due_date'], '%Y-%m-%d')
         task_completed_date = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
         timezone = pytz.timezone('GB')
         date_aware_task_completed_time = timezone.localize(task_completed_time)

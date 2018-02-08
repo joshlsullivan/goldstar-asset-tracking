@@ -23,7 +23,7 @@ class Task(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     task_uuid = models.CharField(max_length=80, unique=True)
     related_object_uuid = models.CharField(max_length=80, unique=False)
-    due_date = models.DateTimeField()
+    due_date = models.DateField()
     job_task_time_difference = models.CharField(max_length=80)
     completed_date = models.DateTimeField()
 
