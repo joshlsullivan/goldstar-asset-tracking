@@ -39,23 +39,23 @@ def process_task(customer_resource_url, token):
     headers = {'Authorization':'Bearer {}'.format(token)}
     r = requests.get(url, headers=headers)
     task = r.json()
-    job = Job.objects.get(job_uuid=task['related_object_uuid'])
-    job_created_time = job.created
-    task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
-    task_due_date = datetime.datetime.strptime(task['due_date'], '%Y-%m-%d %H:%M:%S')
-    task_completed_date = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
-    timezone = pytz.timezone('GB')
-    date_aware_task_completed_time = timezone.localize(task_completed_time)
-    date_aware_due_date = timezone.localize(task_due_date)
-    date_aware_completed_date = timezone.localize(task_completed_date)
-    job_task_time_difference = job_created_time - date_aware_task_completed_time
-    days = job_task_time_difference.days
-    days_to_hours = days * 24
-    diff_btw_two_times = (job_task_time_difference.seconds) / 3600
-    overall_hours = days_to_hours + diff_btw_two_times
     if task['task_complete'] == "0":
         print("Task is not complete")
     elif task['task_complete'] == "1":
+        job = Job.objects.get(job_uuid=task['related_object_uuid'])
+        job_created_time = job.created
+        task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
+        task_due_date = datetime.datetime.strptime(task['due_date'], '%Y-%m-%d %H:%M:%S')
+        task_completed_date = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
+        timezone = pytz.timezone('GB')
+        date_aware_task_completed_time = timezone.localize(task_completed_time)
+        date_aware_due_date = timezone.localize(task_due_date)
+        date_aware_completed_date = timezone.localize(task_completed_date)
+        job_task_time_difference = job_created_time - date_aware_task_completed_time
+        days = job_task_time_difference.days
+        days_to_hours = days * 24
+        diff_btw_two_times = (job_task_time_difference.seconds) / 3600
+        overall_hours = days_to_hours + diff_btw_two_times
         t = job.task_set.create(task_uuid=task['uuid'], related_object_uuid=task['related_object_uuid'], due_date=date_aware_due_date, completed_date=date_aware_completed_date, job_task_time_difference=overall_hours)
         t.save()
         #print("Time Job Create: {} | Time Task Completed: {} | Difference: {} hours".format(job_created_time, date_aware_task_completed_time, overall_hours))
