@@ -14,7 +14,6 @@ class Job(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     job_uuid = models.CharField(max_length=80, unique=True)
     job_category = models.CharField(max_length=80)
-    job_task_time_difference = models.DurationField(null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -25,6 +24,7 @@ class Task(models.Model):
     task_uuid = models.CharField(max_length=80, unique=True)
     related_object_uuid = models.CharField(max_length=80, unique=False)
     due_date = models.DateField()
+    job_task_time_difference = models.CharField(max_length=80)
     completed_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -41,10 +41,13 @@ def process_task(customer_resource_url, token):
     if task['task_complete'] == "0":
         print("Task is not complete")
     elif task['task_complete'] == "1":
-        job = Job.objects.get(job_uuid=task['related_object_uuid'])
+        #job = Job.objects.get(job_uuid=task['related_object_uuid'])
         #t = job.task_set.create(task_uuid=task['uuid'], related_object_uuid=task['related_object_uuid'], due_date=task['due_date'], completed_timestamp=task['completed_timestamp'])
-        #datetime_object = datetime.datetime.strptime(task['completed_timestamp'], '%b %d %Y %I:%M%p')
-        print(job.created, task['completed_timestamp'])
+        datetime_object = datetime.datetime.strptime(task['completed_timestamp'], '%b %d %Y %I:%M%p')
+        job_task_time_difference = datetime_object - ask['completed_timestamp']
+        #job.job_task_time_difference
+        #job.save()
+        print(job_task_time_difference)
         return "OK"
 
 def process_client(customer_resource_url, token):
