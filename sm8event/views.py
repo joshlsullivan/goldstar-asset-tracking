@@ -48,7 +48,7 @@ def process_task(customer_resource_url, token):
         task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %I:%M:%S')
         timezone = pytz.timezone('UTC')
         date_aware_task_completed_time = timezone.localize(task_completed_time)
-        job_task_time_difference = abs(date_aware_task_completed_time - job_completed_time).total_seconds() / 3600.0
+        job_task_time_difference = abs(job_completed_time - date_aware_task_completed_time).total_seconds() / 3600.0
         #job.job_task_time_difference
         #job.save()
         print("{} hours".format(job_task_time_difference))
