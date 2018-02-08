@@ -10,6 +10,7 @@ import jwt
 import requests
 
 import datetime
+import pytz
 
 from client.models import Client, Job, Task, System
 
@@ -45,11 +46,12 @@ def process_task(customer_resource_url, token):
         job_completed_time = job.created
         #t = job.task_set.create(task_uuid=task['uuid'], related_object_uuid=task['related_object_uuid'], due_date=task['due_date'], completed_timestamp=task['completed_timestamp'])
         task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %I:%M:%S')
-        #job_task_time_difference = task_completed_time - job_completed_time
+        timezone = pytz.timezone('UTC')
+        date_aware_task_completed_time = timezone.localize(task_completed_time)
+        job_task_time_difference = date_aware_task_completed_time - job_completed_time
         #job.job_task_time_difference
         #job.save()
-        #print(job_task_time_difference)
-        print(job_completed_time.tzinfo, task_completed_time.tzinfo)
+        print(job_task_time_difference)
         return "OK"
 
 def process_client(customer_resource_url, token):
