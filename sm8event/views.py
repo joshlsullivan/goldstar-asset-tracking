@@ -58,7 +58,7 @@ def process_task(customer_resource_url, token):
         overall_hours = days_to_hours + diff_btw_two_times
         t = job.task_set.create(task_uuid=task['uuid'], related_object_uuid=task['related_object_uuid'], due_date=date_aware_due_date, completed_date=date_aware_completed_date, job_task_time_difference=overall_hours)
         t.save()
-        #print("Time Job Create: {} | Time Task Completed: {} | Difference: {} hours".format(job_created_time, date_aware_task_completed_time, overall_hours))
+        print("Time Job Create: {} | Time Task Completed: {} | Difference: {} hours".format(job_created_time, date_aware_task_completed_time, overall_hours))
         print("Job saved")
         return job
 
