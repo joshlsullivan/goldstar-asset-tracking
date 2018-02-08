@@ -44,7 +44,7 @@ def process_task(customer_resource_url, token):
         #job = Job.objects.get(job_uuid=task['related_object_uuid'])
         #t = job.task_set.create(task_uuid=task['uuid'], related_object_uuid=task['related_object_uuid'], due_date=task['due_date'], completed_timestamp=task['completed_timestamp'])
         datetime_object = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %I:%M:%S')
-        job_task_time_difference = datetime_object - ask['completed_timestamp']
+        job_task_time_difference = datetime_object - task['completed_timestamp']
         #job.job_task_time_difference
         #job.save()
         print(job_task_time_difference)
