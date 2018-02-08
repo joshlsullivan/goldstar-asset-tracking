@@ -48,7 +48,7 @@ def process_task(customer_resource_url, token):
         task_completed_time = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
         task_due_date = datetime.datetime.strptime(task['due_date'], '%Y-%m-%d')
         task_completed_date = datetime.datetime.strptime(task['completed_timestamp'], '%Y-%m-%d %H:%M:%S')
-        timezone = pytz.timezone('UTC')
+        timezone = pytz.timezone('GB')
         date_aware_task_completed_time = timezone.localize(task_completed_time)
         date_aware_due_date = timezone.localize(task_due_date)
         date_aware_completed_date = timezone.localize(task_completed_date)
@@ -137,6 +137,6 @@ def asset_tracking_event(request):
         refuge_audible = System.objects.filter(system_type="R").filter(monitoring_type="A").count()
         refuge_monitored = System.objects.filter(system_type="R").filter(monitoring_type="M").count()
         refuge_total = refuge_audible + refuge_monitored
-        response_time = Task.objects.aggregate(Avg('job_task_time_difference'), Max('job_task_time_difference'), Min('job_task_time_difference'))
+        response_time = Task.objects.aggregate(Avg(int('job_task_time_difference')), Max(int('job_task_time_difference')), Min(int('job_task_time_difference')))
         rendered = render_to_string('sm8event/report.html', {'total_jobs':total_jobs, 'total_maintenance_jobs':total_maintenance_jobs, 'total_clients_contract':total_clients_contract, 'total_clients_non_contract':total_clients_non_contract, 'maintenance_hit_rate':maintenance_hit_rate, 'access_control_audible':access_control_audible, 'access_control_monitored':access_control_monitored, 'access_control_total':access_control_total, 'alarm_monitored':alarm_monitored, 'alarm_audible':alarm_audible, 'alarm_total':alarm_total, 'cctv_monitored':cctv_monitored, 'cctv_audible':cctv_audible, 'cctv_total':cctv_total, 'door_entry_audible':door_entry_audible, 'door_entry_monitored':door_entry_monitored, 'door_entry_total':door_entry_total, 'emergency_lights_audible':emergency_lights_audible, 'emergency_lights_monitored':emergency_lights_monitored, 'emergency_lights_total':emergency_lights_total, 'fire_alarm_audible':fire_alarm_audible, 'fire_alarm_monitored':fire_alarm_monitored, 'fire_alarm_total':fire_alarm_total, 'fire_extinguisher_audible':fire_extinguisher_audible, 'fire_extinguisher_monitored':fire_extinguisher_monitored, 'fire_extinguisher_total':fire_extinguisher_total, 'key_holding_audible':key_holding_audible, 'key_holding_monitored':key_holding_monitored, 'key_holding_total':key_holding_total, 'nurse_call_audible':nurse_call_audible, 'nurse_call_monitored':nurse_call_monitored, 'nurse_call_total':nurse_call_total, 'refuge_audible':refuge_audible, 'refuge_monitored':refuge_monitored, 'refuge_total':refuge_total, 'response_time':response_time})
         return JsonResponse({'eventResponse':rendered})
