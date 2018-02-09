@@ -11,26 +11,26 @@ class SystemFormView(AjaxFormMixin, FormView):
     template_name = 'system/form.html'
     success_url = '/form-success/'
 
-    def form_invalid(self, form):
+    def dispatch(self, *args, **kwargs):
         if 'oauth_token' in self.request.session:
-            response = super(SystemFormView, self).form_invalid(form)
-            if self.request.is_ajax():
-                return JsonResponse(form.errors, status=400)
-            else:
-                return response
+            return super().dispatch(*args, **kwargs)
         else:
             return redirect('/')
 
-    def form_valid(self, form):
-        if 'oauth_token' in self.request.session:
-            response = super(SystemFormView, self).form_valid(form)
-            if self.request.is_ajax():
-                form.save()
-                data = {
-                    'message': "Successfully submitted form data."
-                }
-                return JsonResponse(data)
-            else:
-                return response
+    def form_invalid(self, form):
+        response = super(SystemFormView, self).form_invalid(form)
+        if self.request.is_ajax():
+            return JsonResponse(form.errors, status=400)
         else:
-            return redirect('/')
+            return response
+
+    def form_valid(self, form):
+        response = super(SystemFormView, self).form_valid(form)
+        if self.request.is_ajax():
+            form.save()
+            data = {
+                'message': "Successfully submitted form data."
+            }
+            return JsonResponse(data)
+        else:
+            return response
