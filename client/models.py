@@ -24,7 +24,7 @@ class Task(models.Model):
     task_uuid = models.CharField(max_length=80, unique=True)
     related_object_uuid = models.CharField(max_length=80, unique=False)
     due_date = models.DateField()
-    job_task_time_difference = models.CharField(max_length=80)
+    job_task_time_difference = models.DecimalField(max_digits=5, decimal_places=2)
     completed_date = models.DateTimeField()
 
     def __str__(self):
