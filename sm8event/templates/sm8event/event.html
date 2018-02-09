@@ -6,6 +6,9 @@
     <script src="https://platform.servicem8.com/sdk/1.0/sdk.js"></script>
     <script type="text/javascript">
       var client = SMClient.init();
+      function openNewSystem() {
+        window.open("https://warm-earth-88738.herokuapp.com/system/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+      }
     </script>
     <title>New System</title>
   </head>
@@ -25,6 +28,6 @@
       {% endfor %}
     </ul>
     <button onClick="client.closeWindow();">Close Window</button><br /><br />
-    <button onClick="window.open("https://warm-earth-88738.herokuapp.com/system/");">Close Window</button>
+    <button onClick="openNewSystem();">Close Window</button>
   </body>
 </html>
