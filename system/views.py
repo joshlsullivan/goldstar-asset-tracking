@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.http import JsonResponse
 
@@ -12,19 +12,25 @@ class SystemFormView(AjaxFormMixin, FormView):
     success_url = '/form-success/'
 
     def form_invalid(self, form):
-        response = super(SystemFormView, self).form_invalid(form)
-        if self.request.is_ajax():
-            return JsonResponse(form.errors, status=400)
+        if 'oauth_token' in self.request.session:
+            response = super(SystemFormView, self).form_invalid(form)
+            if self.request.is_ajax():
+                return JsonResponse(form.errors, status=400)
+            else:
+                return response
         else:
-            return response
+            return redirect('/')
 
     def form_valid(self, form):
-        response = super(SystemFormView, self).form_valid(form)
-        if self.request.is_ajax():
-            form.save()
-            data = {
-                'message': "Successfully submitted form data."
-            }
-            return JsonResponse(data)
+        if 'oauth_token' in self.request.session:
+            response = super(SystemFormView, self).form_valid(form)
+            if self.request.is_ajax():
+                form.save()
+                data = {
+                    'message': "Successfully submitted form data."
+                }
+                return JsonResponse(data)
+            else:
+                return response
         else:
-            return response
+            return redirect('/')

@@ -1,3 +1,0 @@
-job_task_time_difference = task['completed_timestamp'] - job.created
-  job.job_task_time_difference
-  job.save()
