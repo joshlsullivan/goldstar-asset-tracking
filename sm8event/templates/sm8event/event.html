@@ -7,6 +7,7 @@
     <script type="text/javascript">
       var client = SMClient.init();
     </script>
+    <title>New System</title>
   </head>
   <body>
     <ul style="list-style-type:none">
@@ -23,6 +24,7 @@
       <li>URN PA: {{ system.urn_pa }}</li>
       {% endfor %}
     </ul>
-    <button onClick="client.closeWindow();">Close Window</button>
+    <button onClick="client.closeWindow();">Close Window</button><br /><br />
+    <button onClick="window.open("https://warm-earth-88738.herokuapp.com/system/");">Close Window</button>
   </body>
 </html>
