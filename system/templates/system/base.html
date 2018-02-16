@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Base Template</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <title>Base Template</title>
+    <script>
+    $(function() {
+      $( ".datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "1900:2012",
+        // You can put more options here.
+
+      });
+    });
+    </script>
   </head>
   <body style="font-family: 'Open Sans', sans-serif;">
     <div>
@@ -13,7 +27,7 @@
     </div>
 
     <!-- jQuery (required for this Ajax tutorial) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     {% load static %}
     <script src="{% static "system/main.js" %}"></script>
   </body>

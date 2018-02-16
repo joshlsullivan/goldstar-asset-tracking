@@ -5,3 +5,7 @@ class SystemForm(ModelForm):
     class Meta:
         model = System
         fields = '__all__'
+        widgets = {
+            'contract_date': forms.DateInput(attrs={'class':'datepicker'}),
+            'install_date': forms.DateInput(attrs={'class':'datepicker'}),
+        }
