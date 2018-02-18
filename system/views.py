@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
+from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
 
 
 from .system_forms import SystemForm
 from .mixins import AjaxFormMixin
+
+from client.models import System
 
 class SystemFormView(AjaxFormMixin, FormView):
     form_class = SystemForm
@@ -34,3 +37,8 @@ class SystemFormView(AjaxFormMixin, FormView):
             return JsonResponse(data)
         else:
             return response
+
+class SystemFormUpdateView(UpdateView):
+    model = System
+    fields = '__all__'
+    template_name_suffix = '_update_form'

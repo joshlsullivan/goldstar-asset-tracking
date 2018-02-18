@@ -46,7 +46,7 @@ class CallbackView(View):
         token = servicem8.fetch_token(token_url, client_secret=client_secret, code=request.GET.get('code', None))
         request.session['oauth_token'] = token
         access_token = token['access_token']
-        print(access_token)
+        print(access_token, token)
         #subscribe(access_token)
         #unsubscribe(access_token)
         return redirect('https://go.servicem8.com')

@@ -77,7 +77,7 @@ def asset_tracking_event(request):
     encoded_token = request.body.decode("utf-8")
     payload = jwt.decode(encoded_token, 'fe155688cf6e4245a46b0cc4bdd4c56b', algorithms=['HS256'])
     event = payload['eventName']
-    print(event)
+    print(payload)
     if event == 'Webhook_Subscription':
         event_object = payload['eventArgs']['object']
         customer_id = payload['eventArgs']['entry'][0]['uuid']
