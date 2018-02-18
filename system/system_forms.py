@@ -10,3 +10,4 @@ class SystemForm(ModelForm):
             'contract_date': forms.DateInput(attrs={'class':'datepicker'}),
             'install_date': forms.DateInput(attrs={'class':'datepicker'}),
         }
+        localized_fields = ('contract_date', 'install_date')
