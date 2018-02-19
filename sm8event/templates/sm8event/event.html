@@ -29,7 +29,8 @@
       <li>Maintenance Form Setup: {{ system.get_maintenance_form_setup_display }}</li>
       <li>URN Intruder: {{ system.urn_intruder }}</li>
       <li>URN PA: {{ system.urn_pa }}</li>
-      <li><button onClick="window.open('https://warm-earth-88738.herokuapp.com/client/system/{{ system.id }}/', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500')">Edit System</button></li>
+      <li><button onClick="window.open('https://warm-earth-88738.herokuapp.com/client/system/{{ system.id }}/', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500')">Edit System</button> | <button onClick="window.open('https://warm-earth-88738.herokuapp.com/client/system/delete/{{ system.id }}/', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500')">Delete System</button></li>
+      <li>&nbsp;</li>
       {% endfor %}
     </ul>
     <button onClick="client.closeWindow();">Close Window</button><br /><br />

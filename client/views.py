@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.http import JsonResponse
-
+from django.urls import reverse_lazy
 
 from .system_forms import SystemForm
 from .mixins import AjaxFormMixin
@@ -42,3 +42,7 @@ class SystemFormUpdateView(UpdateView):
     model = System
     fields = '__all__'
     template_name_suffix = '_update_form'
+
+class SystemFormDeleteView(DeleteView):
+    model = System
+    success_url = reverse_lazy('system')
