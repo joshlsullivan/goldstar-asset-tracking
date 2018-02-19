@@ -19,7 +19,7 @@
   <body style="font-family: 'Open Sans', sans-serif;">
     <ul style="list-style-type:none">
       {% for system in systems %}
-      <li><strong><a href="{% url 'system:system-update' system.id %}" onclick="window.open(this.href, '_blank', toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500">System Type: {{ system.get_system_type_display }}</a></strong></li>
+      <li><strong><a href="{% url 'system:system-update' system.id %}" onclick="window.open(this.href, '_blank', toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500)">System Type: {{ system.get_system_type_display }}</a></strong></li>
       <li>Contracted: {{ system.get_contracted_display }}</li>
       <li>Contract Date: {{ system.contract_date }}</li>
       <li>Install Date: {{ system.install_date }}</li>
