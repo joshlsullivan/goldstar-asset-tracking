@@ -8,7 +8,7 @@
     <script type="text/javascript">
       var client = SMClient.init();
       function openNewSystem() {
-        window.open("https://warm-earth-88738.herokuapp.com/system/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500");
+        window.open("https://warm-earth-88738.herokuapp.com/client/system/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500");
       }
       function refreshData() {
         client.invoke("client_systems_event", {'eventResponse': 'refreshData'});
