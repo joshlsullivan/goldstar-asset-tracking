@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import JsonResponse
 from django.urls import reverse_lazy
@@ -45,4 +45,7 @@ class SystemFormUpdateView(UpdateView):
 
 class SystemFormDeleteView(DeleteView):
     model = System
-    success_url = reverse_lazy('system')
+    success_url = redirect("https://warm-earth-88738.herokuapp.com/client/system/close/")
+
+class SystemCloseWindow(TemplateView):
+    template_name = 'close_window_success.html'
