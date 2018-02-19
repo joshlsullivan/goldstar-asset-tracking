@@ -45,7 +45,7 @@ class SystemFormUpdateView(UpdateView):
 
 class SystemFormDeleteView(DeleteView):
     model = System
-    success_url = redirect("https://warm-earth-88738.herokuapp.com/client/system/close/")
+    success_url = 'https://warm-earth-88738.herokuapp.com/client/close/'
 
 class SystemCloseWindow(TemplateView):
     template_name = 'close_window_success.html'

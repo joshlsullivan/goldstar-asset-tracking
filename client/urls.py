@@ -6,5 +6,5 @@ urlpatterns = [
     path('system/', views.SystemFormView.as_view(), name='system'),
     path('system/<int:pk>/', views.SystemFormUpdateView.as_view(), name='system-update'),
     path('system/delete/<int:pk>/', views.SystemFormDeleteView.as_view(), name='system-delete'),
-    path('system/close/', views.SystemCloseWindow.as_view()),
+    path('close/', views.SystemCloseWindow.as_view()),
 ]
