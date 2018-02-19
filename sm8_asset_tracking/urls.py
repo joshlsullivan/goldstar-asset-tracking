@@ -19,13 +19,12 @@ from django.urls import path, include
 from sm8auth.views import AuthView, CallbackView
 from webhook import views as webhook_views
 from sm8event import views as event_views
-from system.views import SystemFormView
 
 urlpatterns = [
     path('', AuthView.as_view(), name='auth'),
     path('asset_tracking_event/', event_views.asset_tracking_event, name='event'),
     path('callback/', CallbackView.as_view(), name='callback'),
     path('webhook/', webhook_views.webhook, name='webhook'),
-    path('system/', SystemFormView.as_view(), name='system'),
+    path('system/', include('system.urls'),
     path('admin/', admin.site.urls),
 ]
