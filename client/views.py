@@ -48,4 +48,4 @@ class SystemFormDeleteView(DeleteView):
     success_url = 'https://warm-earth-88738.herokuapp.com/client/close/'
 
 class SystemCloseWindow(TemplateView):
-    template_name = 'close_window_success.html'
+    template_name = 'client/close_window_success.html'
