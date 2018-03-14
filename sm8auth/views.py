@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
+from django.conf import settings
 
 from requests_oauthlib import OAuth2Session
 import requests
 
-client_id = '860242'
-client_secret = 'fe155688cf6e4245a46b0cc4bdd4c56b'
+client_id = settings.SERVICEM8_CLIENT_ID
+client_secret = settings.SERVICEM8_CLIENT_SECRET
 authorization_base_url = 'https://go.servicem8.com/oauth/authorize'
 token_url = 'https://go.servicem8.com/oauth/access_token'
 redirect_uri = 'https://warm-earth-88738.herokuapp.com/callback'

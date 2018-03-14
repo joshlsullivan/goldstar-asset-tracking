@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from urllib.parse import parse_qs
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 from django.db.models import Avg, Max, Min
 import json
 import jwt
@@ -15,30 +16,32 @@ import pytz
 
 from client.models import Client, Job, Task, System
 
-def process_category(category_uuid, token):
+auth = (settings.SERVICEM8_ADMIN_USERNAME, settings.SERVICEM8_ADMIN_PASSWORD)
+
+def process_category(category_uuid):
     url = "https://api.servicem8.com/api_1.0/category/{}.json".format(category_uuid)
-    headers = {'Authorization':'Bearer {}'.format(token)}
-    r = requests.get(url, headers=headers)
+    #headers = {'Authorization':'Bearer {}'.format(token)}
+    r = requests.get(url, auth=auth)
     category = r.json()
     name = category['name']
     return name
 
-def process_job(customer_resource_url, token):
+def process_job(customer_resource_url):
     url = customer_resource_url
-    token=token
-    headers = {'Authorization':'Bearer {}'.format(token)}
-    r = requests.get(url, headers=headers)
+    #token=token
+    #headers = {'Authorization':'Bearer {}'.format(token)}
+    r = requests.get(url, auth=auth)
     job = r.json()
     client = Client.objects.get(client_uuid=job['company_uuid'])
-    j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid'], token))
+    j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid']))
     j = client.job_set.create(job_uuid=job['uuid'])
     print(j)
     return j
 
-def process_task(customer_resource_url, token):
+def process_task(customer_resource_url):
     url = customer_resource_url
-    headers = {'Authorization':'Bearer {}'.format(token)}
-    r = requests.get(url, headers=headers)
+    #headers = {'Authorization':'Bearer {}'.format(token)}
+    r = requests.get(url, auth=auth)
     task = r.json()
     if task['task_complete'] == "0":
         print("Task is not complete")
@@ -64,10 +67,10 @@ def process_task(customer_resource_url, token):
         print("Job saved")
         return job
 
-def process_client(customer_resource_url, token):
+def process_client(customer_resource_url):
     url = customer_resource_url
-    headers = {'Authorization': 'Bearer {}'.format(token)}
-    r = requests.get(url, headers=headers)
+    #headers = {'Authorization': 'Bearer {}'.format(token)}
+    r = requests.get(url, auth=auth)
     client = r.json()
     print(client)
     return client
@@ -82,18 +85,18 @@ def asset_tracking_event(request):
         event_object = payload['eventArgs']['object']
         customer_id = payload['eventArgs']['entry'][0]['uuid']
         customer_resource_url = payload['eventArgs']['resource_url']
-        token = payload['auth']['accessToken']
+        #token = payload['auth']['accessToken'] No longer supported
         if event_object == 'COMPANY':
             c = Client(client_uuid=customer_id, resource_url=customer_resource_url)
-            c.name = process_client(customer_resource_url, token)['name']
+            c.name = process_client(customer_resource_url)['name']
             c.save()
             print("Client saved")
             return HttpResponse("Client saved")
         elif event_object == 'JOB':
-            process_job(customer_resource_url, token)
+            process_job(customer_resource_url)
             return JsonResponse({'Status':'Data saved'})
         elif event_object == 'TASK':
-            process_task(customer_resource_url, token)
+            process_task(customer_resource_url)
             return HttpResponse("OK")
     elif event == 'client_systems_event':
         try:
