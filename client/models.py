@@ -58,6 +58,13 @@ class System(models.Model):
     MONITORING_TYPE = (
         ('A', 'Audible'),
         ('M', 'Monitored'),
+        ('D', 'Dualcom'),
+        ('DI', 'Digi'),
+        ('DIP', 'Digi-Plus'),
+        ('DIA', 'Digi-Air'),
+        ('RC', 'Redcare Classic'),
+        ('RS', 'Redcare SEcure'),
+        ('N', 'None'),
     )
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     system_type = models.CharField(max_length=2, choices=SYSTEM_TYPES, blank=True, null=True)
@@ -65,7 +72,7 @@ class System(models.Model):
     contract_date = models.DateField(blank=True, null=True)
     install_date = models.DateField(blank=True, null=True)
     maintenance_interval = models.CharField(max_length=1, choices=INTERVAL, blank=True, null=True)
-    monitoring_type = models.CharField(max_length=1, choices=MONITORING_TYPE, blank=True, null=True)
+    monitoring_type = models.CharField(max_length=3, choices=MONITORING_TYPE, blank=True, null=True)
     monitoring_acct_num = models.CharField(max_length=80, blank=True, null=True)
     maintenance_form_setup = models.CharField(max_length=1, choices=YES_NO, blank=True, null=True)
     urn_intruder = models.CharField(max_length=80, blank=True, null=True)
