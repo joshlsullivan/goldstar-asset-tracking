@@ -42,6 +42,7 @@ class System(models.Model):
         ('KE', 'Key Holding'),
         ('NC', 'Nurse Call'),
         ('R', 'Refuge'),
+        ('M', 'Miscellaneous'),
     )
     YES_NO = (
         ('Y', 'Yes'),
