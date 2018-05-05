@@ -74,6 +74,8 @@ class System(models.Model):
     maintenance_interval = models.CharField(max_length=1, choices=INTERVAL, blank=True, null=True)
     monitoring_type = models.CharField(max_length=3, choices=MONITORING_TYPE, blank=True, null=True)
     monitoring_acct_num = models.CharField(max_length=80, blank=True, null=True)
+    system_price_ex_vat = models.DecimalField(max_digits=6, decimal_places=2)
+    system_monitoring_cost = models.DecimalField(max_digits=6, decimal_places=2)
     maintenance_form_setup = models.CharField(max_length=1, choices=YES_NO, blank=True, null=True)
     urn_intruder = models.CharField(max_length=80, blank=True, null=True)
     urn_pa = models.CharField(max_length=80, blank=True, null=True)
