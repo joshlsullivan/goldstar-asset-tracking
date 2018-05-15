@@ -7,6 +7,9 @@ class Client(models.Model):
     resource_url = models.URLField()
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -80,6 +83,9 @@ class System(models.Model):
     urn_pa = models.CharField(max_length=80, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['client']
 
     def __str__(self):
         return self.system_type
