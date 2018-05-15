@@ -110,7 +110,7 @@ def asset_tracking_event(request):
         total_maintenance_jobs = Job.objects.filter(created__month=datetime.datetime.now().month).filter(job_category="Maintenance").count()
         total_clients_contract = System.objects.filter(date_created__month=datetime.datetime.now().month).filter(contracted="Y").count()
         total_clients_non_contract = System.objects.filter(date_created__month=datetime.datetime.now().month).filter(contracted="N").count()
-        maintenance_hit_rate = total_maintenance_jobs / total_jobs * 100
+        maintenance_hit_rate = (total_maintenance_jobs / total_jobs * 100) if total_jobs != 0 else 0
         access_control_audible = System.objects.filter(system_type="AC").filter(monitoring_type="A").count()
         access_control_monitored = System.objects.filter(system_type="AC").filter(monitoring_type="M").count()
         access_control_total = access_control_audible + access_control_monitored
