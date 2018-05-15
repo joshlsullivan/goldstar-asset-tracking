@@ -20,6 +20,7 @@
     <ul style="list-style-type:none">
       {% for system in systems %}
       <li><strong>System Type: {{ system.get_system_type_display }}</strong></li>
+      <li>System ID: {{ system.system_id }}</li>
       <li>Contracted: {{ system.get_contracted_display }}</li>
       <li>Contract Date: {{ system.contract_date }}</li>
       <li>Install Date: {{ system.install_date }}</li>
@@ -29,6 +30,8 @@
       <li>Maintenance Form Setup: {{ system.get_maintenance_form_setup_display }}</li>
       <li>URN Intruder: {{ system.urn_intruder }}</li>
       <li>URN PA: {{ system.urn_pa }}</li>
+      <li>System Price Ex VAT: {{ system.system_price_ex_vat }}</li>
+      <li>System Monitoring Cost: {{ system.system_monitoring_cost }}</li>
       <li><button onClick="window.open('https://warm-earth-88738.herokuapp.com/client/system/{{ system.id }}/', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500')">Edit System</button> | <button onClick="window.open('https://warm-earth-88738.herokuapp.com/client/system/delete/{{ system.id }}/', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=500')">Delete System</button></li>
       <li>&nbsp;</li>
       {% endfor %}
