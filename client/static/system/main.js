@@ -47,6 +47,10 @@ $(document).ready(function(){
         console.log(data)
         console.log(textStatus)
         console.log(jqXHR)
+        document.querySelector('.alert-primary').style.display = 'block';
+        setTimeout(function(){
+          document.querySelector('.alert-primary').style.display = 'none';
+        }, 3000);
         document.getElementById("system-form").reset();
     }
 
