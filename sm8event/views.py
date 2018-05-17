@@ -116,7 +116,14 @@ def asset_tracking_event(request):
         access_control_total = access_control_audible + access_control_monitored
         alarm_audible = System.objects.filter(system_type="AL").filter(monitoring_type="A").count()
         alarm_monitored = System.objects.filter(system_type="AL").filter(monitoring_type="M").count()
-        alarm_total = alarm_audible + alarm_monitored
+        alarm_dualcom = System.objects.filter(system_type="AL").filter(monitoring_type="D").count()
+        alarm_digi = System.objects.filter(system_type="AL").filter(monitoring_type="DI").count()
+        alarm_digi_plus = System.objects.filter(system_type="AL").filter(monitoring_type="DIP").count()
+        alarm_digi_air = System.objects.filter(system_type="AL").filter(monitoring_type="DIA").count()
+        alarm_redcare_classic = System.objects.filter(system_type="AL").filter(monitoring_type="RC").count()
+        alarm_redcare_secure = System.objects.filter(system_type="AL").filter(monitoring_type="RS").count()
+        alarm_none = System.objects.filter(system_type="AL").filter(monitoring_type="N").count()
+        alarm_total = alarm_audible + alarm_monitored + alarm_dualcom + alarm_digi + alarm_digi_plus + alarm_digi_air + alarm_redcare_classic + alarm_redcare_secure + alarm_none
         cctv_audible = System.objects.filter(system_type="CT").filter(monitoring_type="A").count()
         cctv_monitored = System.objects.filter(system_type="CT").filter(monitoring_type="M").count()
         cctv_total = cctv_audible + cctv_monitored
