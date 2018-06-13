@@ -42,6 +42,7 @@ class SystemFormUpdateView(UpdateView):
     model = System
     fields = '__all__'
     template_name_suffix = '_update_form'
+    success_url = 'https://warm-earth-88738.herokuapp.com/client/close/'
 
 class SystemFormDeleteView(DeleteView):
     model = System

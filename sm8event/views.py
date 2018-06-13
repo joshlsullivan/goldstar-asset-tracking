@@ -32,6 +32,7 @@ def process_job(customer_resource_url):
     #headers = {'Authorization':'Bearer {}'.format(token)}
     r = requests.get(url, auth=auth)
     job = r.json()
+    print(job)
     client = Client.objects.get(client_uuid=job['company_uuid'])
     j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid']))
     j = client.job_set.create(job_uuid=job['uuid'])
