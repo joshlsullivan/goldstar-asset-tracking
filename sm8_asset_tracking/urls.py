@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 from sm8auth.views import AuthView, CallbackView
 from webhook import views as webhook_views
 from sm8event import views as event_views
+from system.views import SystemListView
 
 urlpatterns = [
     path('', AuthView.as_view(), name='auth'),
@@ -27,4 +29,7 @@ urlpatterns = [
     path('webhook/', webhook_views.webhook, name='webhook'),
     path('client/', include('client.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='system/login.html')),
+    path('systems/', SystemListView.as_view(), name='systems'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
