@@ -30,6 +30,6 @@ urlpatterns = [
     path('client/', include('client.urls')),
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='system/login.html')),
-    path('systems/', include('system.urls'),
+    path('systems/', include('system.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
