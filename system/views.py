@@ -5,3 +5,4 @@ from client.models import System
 class SystemListView(LoginRequiredMixin, ListView):
     model = System
     fields = '__all__'
+    template_name = 'system/system_list.html'
