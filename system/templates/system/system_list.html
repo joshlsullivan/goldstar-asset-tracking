@@ -37,7 +37,7 @@
             <td>{{ system.system_monitoring_cost }}</td>
             <td>{{ system.urn_intruder }}</td>
             <td>{{ system.urn_pa }}</td>
-            <td><a class="btn btn-primary" href="#" role="button"><a href="{% url 'system:update' system.id %}"></a></a></td>
+            <td><a class="btn btn-primary" href="{% url 'system:update' system.id %}" role="button">Update</a></td>
           </tr>
           {% endfor %}
         </tbody>
