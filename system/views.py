@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import UpdateView
 from client.models import System
 
 class SystemListView(LoginRequiredMixin, ListView):
@@ -22,3 +23,8 @@ class SystemTypeListView(LoginRequiredMixin, ListView):
         self.system_type = System.objects.filter(system_type=self.kwargs['system_type'])
         print(self.system_type)
         return self.system_type
+
+class SystemUpdateView(LoginRequiredMixin, UpdateView):
+    model = System
+    fields = '__all__'
+    template_name_suffix = '_update_form'
