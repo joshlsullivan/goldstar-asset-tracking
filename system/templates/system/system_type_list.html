@@ -25,12 +25,12 @@
           {% for system in object_list %}
           <tr>
             <td>{{ system.client.name }}</td>
-            <td><a href="{% url 'system:system_type' system.system_type %}">{{ system.get_system_type_display }}</a></td>
+            <td>{{ system.get_system_type_display }}</td>
             <td>{{ system.get_contracted_display }}</td>
             <td>{{ system.contract_date }}</td>
             <td>{{ system.install_date }}</td>
             <td>{{ system.get_maintenance_interval_display }}</td>
-            <td><a href="{% url 'system:monitoring_type' system.monitoring_type %}">{{ system.get_monitoring_type_display }}</a></td>
+            <td>{{ system.get_monitoring_type_display }}</td>
             <td>{{ system.monitoring_acct_num }}</td>
             <td>{{ system.system_price_ex_vat }}</td>
             <td>{{ system.system_monitoring_cost }}</td>
