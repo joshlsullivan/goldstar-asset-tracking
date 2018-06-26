@@ -20,4 +20,5 @@ class SystemTypeListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         self.system_type = System.objects.filter(system_type=self.kwargs['system_type'])
+        print(self.system_type)
         return self.system_type
