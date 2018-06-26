@@ -1,0 +1,46 @@
+{% extends "system/base.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h1>Systems</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Client</th>
+            <th scope="col">System Type</th>
+            <th scope="col">Contracted</th>
+            <th scope="col">Contract Date</th>
+            <th scope="col">Install Date</th>
+            <th scope="col">Maintenance Interval</th>
+            <th scope="col">Monitoring Type</th>
+            <th scope="col">Monitoring Account Number</th>
+            <th scope="col">System Price ex VAT</th>
+            <th scope="col">System Monitoring Cost</th>
+            <th scope="col">URN Intruder</th>
+            <th scope="col">URN PA</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for system in object_list %}
+          <tr>
+            <td>{{ system.client.name }}</td>
+            <td>{{ system.get_system_type_display }}</td>
+            <td>{{ system.get_contracted_display }}</td>
+            <td>{{ system.contract_date }}</td>
+            <td>{{ system.install_date }}</td>
+            <td>{{ system.get_maintenance_interval_display }}</td>
+            <td>{{ system.get_monitoring_type_display }}</td>
+            <td>{{ system.monitoring_acct_num }}</td>
+            <td>{{ system.system_price_ex_vat }}</td>
+            <td>{{ system.system_monitoring_cost }}</td>
+            <td>{{ system.urn_intruder }}</td>
+            <td>{{ system.urn_pa }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
