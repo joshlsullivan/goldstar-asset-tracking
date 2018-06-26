@@ -5,6 +5,6 @@ from system.views import SystemListView, MonitoringTypeListView, SystemTypeListV
 app_name = 'system'
 urlpatterns = [
     path('', SystemListView.as_view(), name='system-list'),
-    path('<monitoring_type>/', MonitoringTypeListView.as_view(), name='monitoring_type'),
-    path('<system_type>/', SystemTypeListView.as_view(), name='system_type'),
+    path('monitoring/<monitoring_type>/', MonitoringTypeListView.as_view(), name='monitoring_type'),
+    path('system/<system_type>/', SystemTypeListView.as_view(), name='system_type'),
 ]
