@@ -28,4 +28,6 @@ class SystemUpdateView(LoginRequiredMixin, UpdateView):
     model = System
     fields = '__all__'
     template_name_suffix = '_update_form'
-    success_url = '/systems/'
+
+    def get_success_url(self):
+        pass
