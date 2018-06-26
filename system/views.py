@@ -13,5 +13,4 @@ class MonitoringTypeListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         self.system = get_object_or_404(System, monitoring_type=self.kwargs['monitoring_type'])
-        print(self.monitoring_type)
-        return System.objects.filter(monitoring_type=self.monitoring_type)
+        return System.objects.filter(monitoring_type=self.system)
