@@ -35,4 +35,4 @@ class SystemUpdateView(LoginRequiredMixin, UpdateView):
 class SystemsKPIReport(View):
     def get(self, request, *args, **kwargs):
         systems = System.objects.all()
-        return render(request, 'system/kip_report.html', {'systems':systems})
+        return render(request, 'system/kpi_report.html', {'systems':systems})
