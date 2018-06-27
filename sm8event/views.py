@@ -23,8 +23,13 @@ def process_category(category_uuid):
     #headers = {'Authorization':'Bearer {}'.format(token)}
     r = requests.get(url, auth=auth)
     category = r.json()
-    name = category['name']
-    return name
+    if category:
+        name = category['name']
+        print(name)
+        return name
+    else:
+        print("No category")
+        return None
 
 def process_task(customer_resource_url):
     url = customer_resource_url
