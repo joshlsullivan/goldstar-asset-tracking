@@ -92,7 +92,7 @@ def load_client():
 def load_jobs():
     url = 'https://api.servicem8.com/api_1.0/job.json'
     auth = ('josh+goldsmith@misllc.com', '9793')
-    jobs = requests.get(url, auth=atuh).json()
+    jobs = requests.get(url, auth=auth).json()
     for job in jobs:
         client = load_client(job['company_uuid'])
         obj1, created = Client.objects.get_or_create(
