@@ -40,7 +40,7 @@ class SystemsKPIReport(View):
         previous_year = current_year - 1
         current_month = today.month
         contracted = Systems.objects.filter(contracted='Y')
-        non-contracted = Systems.objects.filter(contracted='N')
+        non_contracted = Systems.objects.filter(contracted='N')
         maintenance = Systems.objects.filter()
         total_jobs = Job.objects.all()
         total_maintenance_jobs = Job.objects.filter(job_category="Maintenance")
