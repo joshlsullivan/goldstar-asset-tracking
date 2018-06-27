@@ -58,7 +58,7 @@ def process_task(customer_resource_url):
 def process_client(customer_resource_url):
     #headers = {'Authorization': 'Bearer {}'.format(token)}
     print(customer_resource_url)
-    client = requests.get(customer_resource_url, auth=auth)
+    client = requests.get(customer_resource_url, auth=auth).json()
     print("Client - {}".format(client))
     return client
 
