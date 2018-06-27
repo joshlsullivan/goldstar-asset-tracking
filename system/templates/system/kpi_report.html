@@ -22,33 +22,43 @@
           </tr>
         </thead>
         <tbody>
-          {% for system in contracted %}
-          {% if system.contract_date|date:"m" == 1 and system.contract_date|date:"Y" == current_year %}
           <tr>
-            <th scope="row">New Systems (Contract)</th>
-            <td>{{ system.count }}</td>
+            <th scope="row">New Systems (Contracted)</th>
+            <td>{{ jan_cur_con }}</td>
+            <td>{{ feb_cur_con }}</td>
+            <td>{{ mar_cur_con }}</td>
+            <td>{{ apr_cur_con }}</td>
+            <td>{{ may_cur_con }}</td>
+            <td>{{ jun_cur_con }}</td>
+            <td>{{ jul_cur_con }}</td>
+            <td>{{ aug_cur_con }}</td>
+            <td>{{ sep_cur_con }}</td>
+            <td>{{ oct_cur_con }}</td>
+            <td>{{ nov_cur_con }}</td>
+            <td>{{ dec_cur_con }}</td>
           </tr>
-          {% endif %}
-          {% endfor %}
           <tr>
-            <th scope="row">New Systems (Non-Contract)</th>
-            <td>Jacob</td>
-          </tr>
-          <tr>
-            <th scope="row">Lost Contracts</th>
-            <td>Larry</td>
+            <th scope="row">New Systems (Non-Contracted)</th>
+            <td>{{ jan_cur_non_con }}</td>
+            <td>{{ feb_cur_non_con }}</td>
+            <td>{{ mar_cur_non_con }}</td>
+            <td>{{ apr_cur_non_con }}</td>
+            <td>{{ may_cur_non_con }}</td>
+            <td>{{ jun_cur_non_con }}</td>
+            <td>{{ jul_cur_non_con }}</td>
+            <td>{{ aug_cur_non_con }}</td>
+            <td>{{ sep_cur_non_con }}</td>
+            <td>{{ oct_cur_non_con }}</td>
+            <td>{{ nov_cur_non_con }}</td>
+            <td>{{ dec_cur_non_con }}</td>
           </tr>
           <tr>
             <th scope="row">Total Maintenance Per Month</th>
-            <td>Larry</td>
-          </tr>
-          <tr>
-            <th scope="row">Total Maintenance Logged</th>
-            <td>Larry</td>
+            <td>{{ jan_cur_man }}</td>
           </tr>
           <tr>
             <th scope="row">Maintenance Hit Rate</th>
-            <td>Larry</td>
+            <td>{{ jun_cur_con }}</td>
           </tr>
         </tbody>
       </table>

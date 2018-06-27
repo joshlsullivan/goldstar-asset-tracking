@@ -17,6 +17,7 @@ class Job(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     job_uuid = models.CharField(max_length=80, unique=True)
     job_category = models.CharField(max_length=80)
+    job_date = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

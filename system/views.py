@@ -39,25 +39,59 @@ class SystemsKPIReport(View):
         current_year = today.year
         previous_year = current_year - 1
         current_month = today.month
-        contracted = System.objects.filter(contracted='Y')
-        non_contracted = System.objects.filter(contracted='N')
-        maintenance = System.objects.filter()
-        total_jobs = Job.objects.all()
-        total_maintenance_jobs = Job.objects.filter(job_category="Maintenance")
-        systems = System.objects.all()
+        jan_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='01').filter(contracted='Y').count()
+        feb_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='02').filter(contracted='Y').count()
+        mar_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='03').filter(contracted='Y').count()
+        apr_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='04').filter(contracted='Y').count()
+        may_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='05').filter(contracted='Y').count()
+        jun_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='06').filter(contracted='Y').count()
+        jul_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='07').filter(contracted='Y').count()
+        aug_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='08').filter(contracted='Y').count()
+        sep_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='09').filter(contracted='Y').count()
+        oct_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='10').filter(contracted='Y').count()
+        nov_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='Y').count()
+        dec_cur_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='Y').count()
+        jan_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='01').filter(contracted='N').count()
+        feb_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='02').filter(contracted='N').count()
+        mar_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='03').filter(contracted='N').count()
+        apr_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='04').filter(contracted='N').count()
+        may_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='05').filter(contracted='N').count()
+        jun_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='06').filter(contracted='N').count()
+        jul_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='07').filter(contracted='N').count()
+        aug_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='08').filter(contracted='N').count()
+        sep_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='09').filter(contracted='N').count()
+        oct_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='10').filter(contracted='N').count()
+        nov_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='N').count()
+        dec_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='N').count()
+        jan_cur_man = Job.objects.filter(contract_date__year=current_year).filter(contract_date__month='01').filter(job_category='Maintenance').count()
         return render(
             request,
             'system/kpi_report.html',
             {
-                'systems':systems,
-                'current_year':current_year,
-                'previous_year':previous_year,
-                'current_month':current_month,
-                'total_jobs':total_jobs,
-                'total_maintenance_jobs':total_maintenance_jobs,
-                'today':today,
-                'contracted':contracted,
-                'non_contracted':non_contracted,
-                'maintenance':maintenance,
+                'jan_cur_con':jan_cur_con,
+                'feb_cur_con':feb_cur_con,
+                'mar_cur_con':mar_cur_con,
+                'apr_cur_con':apr_cur_con,
+                'may_cur_con':may_cur_con,
+                'jun_cur_con':jun_cur_con,
+                'jul_cur_con':jul_cur_con,
+                'aug_cur_con':aug_cur_con,
+                'sep_cur_con':sep_cur_con,
+                'oct_cur_con':oct_cur_con,
+                'nov_cur_con':nov_cur_con,
+                'dec_cur_con':dec_cur_con,
+                'jan_cur_non_con':jan_cur_non_con,
+                'feb_cur_non_con':feb_cur_non_con,
+                'mar_cur_non_con':mar_cur_non_con,
+                'apr_cur_non_con':apr_cur_non_con,
+                'may_cur_non_con':may_cur_non_con,
+                'jun_cur_non_con':jun_cur_non_con,
+                'jul_cur_non_con':jul_cur_non_con,
+                'aug_cur_non_con':aug_cur_non_con,
+                'sep_cur_non_con':sep_cur_non_con,
+                'oct_cur_non_con':oct_cur_non_con,
+                'nov_cur_non_con':nov_cur_non_con,
+                'dec_cur_non_con':dec_cur_non_con,
+                'jan_cur_man':jan_cur_man,
             }
         )

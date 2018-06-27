@@ -82,6 +82,37 @@ def process_job(customer_resource_url):
     print("Job saved - {}".format(job))
     return job
 
+# one-off function to populate jobs and clients
+def load_client():
+    url = 'https://api.servicem8.com/api_1.0/company/{}.json'.format(company_uuid)
+    auth = ('josh+goldsmith@misllc.com', '9793')
+    client = requests.get(url, auth=auth).json()
+    return client
+
+def load_jobs():
+    url = 'https://api.servicem8.com/api_1.0/job.json'
+    auth = ('josh+goldsmith@misllc.com', '9793')
+    jobs = requests.get(url, auth=atuh).json()
+    for job in jobs:
+        client = load_client(job['company_uuid'])
+        obj1, created = Client.objects.get_or_create(
+            client_uuid=client['uuid'],
+            defaults={
+                'name':client['name'],
+                'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
+            }
+        )
+        obj2, created = Job.objects.get_or_create(
+            job_uuid=job['uuid'],
+            defaults={
+                'client':job['company_uuid'],
+                'job_category':process_category(job['category_uuid']),
+                'job_date':job['date'],
+            }
+        )
+    print("Saving job")
+    return job
+
 @csrf_exempt
 def asset_tracking_event(request):
     encoded_token = request.body.decode("utf-8")
