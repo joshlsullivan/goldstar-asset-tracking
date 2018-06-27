@@ -1,6 +1,6 @@
 from django.urls import path
 
-from system.views import SystemListView, MonitoringTypeListView, SystemTypeListView, SystemUpdateView
+from system.views import SystemListView, MonitoringTypeListView, SystemTypeListView, SystemUpdateView, SystemsKPIReport
 
 app_name = 'system'
 urlpatterns = [
