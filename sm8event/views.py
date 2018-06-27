@@ -98,6 +98,7 @@ def load_jobs():
     auth = ('josh+goldsmith@misllc.com', '9793')
     jobs = requests.get(url, auth=auth).json()
     for job in jobs:
+        job_category = job['category_uuid']
         client = load_client(job['company_uuid'])
         obj1, created = Client.objects.get_or_create(
             client_uuid=client['uuid'],
@@ -106,14 +107,24 @@ def load_jobs():
                 'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
             }
         )
-        obj2, created = Job.objects.get_or_create(
-            job_uuid=obj1,
-            defaults={
-                'client':job['company_uuid'],
-                'job_category':process_category(job['category_uuid']),
-                'job_date':job['date'],
-            }
-        )
+        if job_category:
+            obj2, created = Job.objects.get_or_create(
+                job_uuid=obj1,
+                defaults={
+                    'client':job['company_uuid'],
+                    'job_category':process_category(job['category_uuid']),
+                    'job_date':job['date'],
+                }
+            )
+        else:
+            obj2, created = Job.objects.get_or_create(
+                job_uuid=obj1,
+                defaults={
+                    'client':job['company_uuid'],
+                    'job_category':'None',
+                    'job_date':job['date'],
+                }
+            )
         print("Saving job")
     return job
 
