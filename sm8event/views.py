@@ -83,7 +83,7 @@ def process_job(customer_resource_url):
     return job
 
 # one-off function to populate jobs and clients
-def load_client():
+def load_client(company_uuid):
     url = 'https://api.servicem8.com/api_1.0/company/{}.json'.format(company_uuid)
     auth = ('josh+goldsmith@misllc.com', '9793')
     client = requests.get(url, auth=auth).json()
