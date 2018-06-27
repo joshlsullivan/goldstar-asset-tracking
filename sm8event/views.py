@@ -21,15 +21,14 @@ auth = (settings.SERVICEM8_ADMIN_USERNAME, settings.SERVICEM8_ADMIN_PASSWORD)
 def process_category(category_uuid):
     url = "https://api.servicem8.com/api_1.0/category/{}.json".format(category_uuid)
     #headers = {'Authorization':'Bearer {}'.format(token)}
-    r = requests.get(url, auth=auth)
-    category = r.json()
-    if category:
+    category = requests.get(url, auth=auth).json()
+    if category is not None:
         name = category['name']
         print(name)
         return name
     else:
         print("No category")
-        return ""
+        return "No category"
 
 def process_task(customer_resource_url):
     url = customer_resource_url
