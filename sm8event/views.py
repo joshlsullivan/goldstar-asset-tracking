@@ -103,14 +103,14 @@ def load_jobs():
             }
         )
         obj2, created = Job.objects.get_or_create(
-            job_uuid=job['uuid'],
+            job_uuid=obj1,
             defaults={
                 'client':job['company_uuid'],
                 'job_category':process_category(job['category_uuid']),
                 'job_date':job['date'],
             }
         )
-    print("Saving job")
+        print("Saving job")
     return job
 
 @csrf_exempt
