@@ -29,7 +29,7 @@ def process_category(category_uuid):
         return name
     else:
         print("No category")
-        return None
+        return ""
 
 def process_task(customer_resource_url):
     url = customer_resource_url
