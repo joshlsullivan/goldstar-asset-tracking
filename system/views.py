@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
+from django.views import View
 from client.models import System
 
 class SystemListView(LoginRequiredMixin, ListView):
@@ -29,3 +30,8 @@ class SystemUpdateView(LoginRequiredMixin, UpdateView):
     fields = '__all__'
     template_name_suffix = '_update_form'
     success_url = '/systems/'
+
+class SystemsKPIReport(View):
+    def get(self, request, *args, **kwargs):
+        systems = System.objects.all()
+        return render(request, 'system/kip_report.html', {'systems':systems})
