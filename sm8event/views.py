@@ -26,19 +26,6 @@ def process_category(category_uuid):
     name = category['name']
     return name
 
-def process_job(customer_resource_url):
-    url = customer_resource_url
-    #token=token
-    #headers = {'Authorization':'Bearer {}'.format(token)}
-    r = requests.get(url, auth=auth)
-    job = r.json()
-    print(job)
-    client = Client.objects.get(client_uuid=job['company_uuid'])
-    j = client.job_set.create(job_uuid=job['uuid'], job_category=process_category(job['category_uuid']))
-    j = client.job_set.create(job_uuid=job['uuid'])
-    print(j)
-    return j
-
 def process_task(customer_resource_url):
     url = customer_resource_url
     #headers = {'Authorization':'Bearer {}'.format(token)}
@@ -75,6 +62,26 @@ def process_client(customer_resource_url):
     client = r.json()
     print(client)
     return client
+
+def process_job(customer_resource_url):
+    url = customer_resource_url
+    #token=token
+    #headers = {'Authorization':'Bearer {}'.format(token)}
+    r = requests.get(url, auth=auth).json()
+    print(r)
+    name = r['name']
+    client, created = Client.objects.get_or_create(
+        client_uuid=r['company_uuid'],
+        defaults={
+            'name':name,
+            'resource_url':url,
+        }
+    )
+    print(client)
+    job = Job(client=client, job_uuid=r['uuid'], job_category=process_category(r['category_uuid']))
+    #j = client.job_set.create(job_uuid=job['uuid'])
+    print("Job saved - {}".format(job))
+    return job
 
 @csrf_exempt
 def asset_tracking_event(request):
