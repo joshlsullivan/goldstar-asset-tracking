@@ -22,10 +22,14 @@
           </tr>
         </thead>
         <tbody>
+          {% for system in contracted %}
+          {% if system.contract_date|date:"m" == 1 and system.contract_date|date:"Y" == current_year %}
           <tr>
             <th scope="row">New Systems (Contract)</th>
-            <td>Mark</td>
+            <td>{{ system.count }}</td>
           </tr>
+          {% endif %}
+          {% endfor %}
           <tr>
             <th scope="row">New Systems (Non-Contract)</th>
             <td>Jacob</td>

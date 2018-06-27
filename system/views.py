@@ -4,7 +4,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 from django.views import View
-from client.models import System
+from client.models import System, Job
+from datetime import datetime
 
 class SystemListView(LoginRequiredMixin, ListView):
     model = System
@@ -34,5 +35,29 @@ class SystemUpdateView(LoginRequiredMixin, UpdateView):
 
 class SystemsKPIReport(View):
     def get(self, request, *args, **kwargs):
+        today = datetime.today()
+        current_year = today.year
+        previous_year = current_year - 1
+        current_month = today.month
+        contracted = Systems.objects.filter(contracted='Y')
+        non-contracted = Systems.objects.filter(contracted='N')
+        maintenance = Systems.objects.filter()
+        total_jobs = Job.objects.all()
+        total_maintenance_jobs = Job.objects.filter(job_category="Maintenance")
         systems = System.objects.all()
-        return render(request, 'system/kpi_report.html', {'systems':systems})
+        return render(
+            request,
+            'system/kpi_report.html',
+            {
+                'systems':systems,
+                'current_year':current_year,
+                'previous_year':previous_year,
+                'current_month':current_month,
+                'total_jobs':total_jobs,
+                'total_maintenance_jobs':total_maintenance_jobs,
+                'today':today,
+                'contracted':contracted,
+                'non-contracted':non-contracted,
+                'maintenance':maintenance,
+            }
+        )
