@@ -56,10 +56,8 @@ def process_task(customer_resource_url):
         return job
 
 def process_client(customer_resource_url):
-    url = customer_resource_url
     #headers = {'Authorization': 'Bearer {}'.format(token)}
-    r = requests.get(url, auth=auth)
-    client = r.json()
+    client = requests.get(customer_resource_url, auth=auth).json()
     print(client)
     return client
 
@@ -95,9 +93,11 @@ def asset_tracking_event(request):
         customer_resource_url = payload['eventArgs']['resource_url']
         #token = payload['auth']['accessToken'] No longer supported
         if event_object == 'COMPANY':
-            c = Client(client_uuid=customer_id, resource_url=customer_resource_url)
-            c.name = process_client(customer_resource_url)['name']
-            c.save()
+            client = Client(client_uuid=customer_id, resource_url=customer_resource_url)
+            name = process_client(customer_resource_url)['name']
+            print(name)
+            client.name = name
+            client.save()
             print("Client saved")
             return HttpResponse("Client saved")
         elif event_object == 'JOB':
