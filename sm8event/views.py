@@ -99,6 +99,7 @@ def load_jobs():
     jobs = requests.get(url, auth=auth).json()
     for job in jobs:
         job_category = job['category_uuid']
+        print(job_category)
         client = load_client(job['company_uuid'])
         obj1, created = Client.objects.get_or_create(
             client_uuid=client['uuid'],
