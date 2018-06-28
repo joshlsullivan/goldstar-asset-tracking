@@ -3,6 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
+      <h2>{{ current_year }}</h2>
       <table class="table">
         <thead>
           <tr>
@@ -66,6 +67,81 @@
             <td>{{ oct_cur_man }}</td>
             <td>{{ nov_cur_man }}</td>
             <td>{{ dec_cur_man }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Maintenance Hit Rate</th>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ previous_year }}</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">KPI/Month</th>
+            <th scope="col">January</th>
+            <th scope="col">February</th>
+            <th scope="col">March</th>
+            <th scope="col">April</th>
+            <th scope="col">May</th>
+            <th scope="col">June</th>
+            <th scope="col">July</th>
+            <th scope="col">August</th>
+            <th scope="col">September</th>
+            <th scope="col">October</th>
+            <th scope="col">November</th>
+            <th scope="col">December</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">New Systems (Contracted)</th>
+            <td>{{ jan_pre_con }}</td>
+            <td>{{ feb_pre_con }}</td>
+            <td>{{ mar_pre_con }}</td>
+            <td>{{ apr_pre_con }}</td>
+            <td>{{ may_pre_con }}</td>
+            <td>{{ jun_pre_con }}</td>
+            <td>{{ jul_pre_con }}</td>
+            <td>{{ aug_pre_con }}</td>
+            <td>{{ sep_pre_con }}</td>
+            <td>{{ oct_pre_con }}</td>
+            <td>{{ nov_pre_con }}</td>
+            <td>{{ dec_pre_con }}</td>
+          </tr>
+          <tr>
+            <th scope="row">New Systems (Non-Contracted)</th>
+            <td>{{ jan_pre_non_con }}</td>
+            <td>{{ feb_pre_non_con }}</td>
+            <td>{{ mar_pre_non_con }}</td>
+            <td>{{ apr_pre_non_con }}</td>
+            <td>{{ may_pre_non_con }}</td>
+            <td>{{ jun_pre_non_con }}</td>
+            <td>{{ jul_pre_non_con }}</td>
+            <td>{{ aug_pre_non_con }}</td>
+            <td>{{ sep_pre_non_con }}</td>
+            <td>{{ oct_pre_non_con }}</td>
+            <td>{{ nov_pre_non_con }}</td>
+            <td>{{ dec_pre_non_con }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Total Maintenance Per Month</th>
+            <td>{{ jan_pre_man }}</td>
+            <td>{{ feb_pre_man }}</td>
+            <td>{{ mar_pre_man }}</td>
+            <td>{{ apr_pre_man }}</td>
+            <td>{{ may_pre_man }}</td>
+            <td>{{ jun_pre_man }}</td>
+            <td>{{ jul_pre_man }}</td>
+            <td>{{ aug_pre_man }}</td>
+            <td>{{ sep_pre_man }}</td>
+            <td>{{ oct_pre_man }}</td>
+            <td>{{ nov_pre_man }}</td>
+            <td>{{ dec_pre_man }}</td>
           </tr>
           <tr>
             <th scope="row">Maintenance Hit Rate</th>
