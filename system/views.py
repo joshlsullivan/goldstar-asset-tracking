@@ -136,6 +136,30 @@ class SystemsKPIReport(View):
         oct_pre_man = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='10').filter(job_category='Maintenance').count()
         nov_pre_man = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='11').filter(job_category='Maintenance').count()
         dec_pre_man = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='12').filter(job_category='Maintenance').count()
+        jan_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='01').count()
+        feb_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='02').count()
+        mar_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='03').count()
+        apr_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='04').count()
+        may_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='05').count()
+        jun_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='06').count()
+        jul_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='07').count()
+        aug_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='08').count()
+        sep_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='09').count()
+        oct_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='10').count()
+        nov_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='11').count()
+        dec_pre_jobs = Job.objects.filter(job_date__year=previous_year).filter(job_date__month='12').count()
+        jan_pre_rate = (jan_pre_man / jan_pre_jobs * 100) if jan_pre_jobs != 0 else 0
+        feb_pre_rate = (feb_pre_man / feb_pre_jobs * 100) if feb_pre_jobs != 0 else 0
+        mar_pre_rate = (mar_pre_man / mar_pre_jobs * 100) if mar_pre_jobs != 0 else 0
+        apr_pre_rate = (apr_pre_man / apr_pre_jobs * 100) if apr_pre_jobs != 0 else 0
+        may_pre_rate = (may_pre_man / may_pre_jobs * 100) if may_pre_jobs != 0 else 0
+        jun_pre_rate = (jun_pre_man / jun_pre_jobs * 100) if jun_pre_jobs != 0 else 0
+        jul_pre_rate = (jul_pre_man / jul_pre_jobs * 100) if jul_pre_jobs != 0 else 0
+        aug_pre_rate = (aug_pre_man / aug_pre_jobs * 100) if aug_pre_jobs != 0 else 0
+        sep_pre_rate = (sep_pre_man / sep_pre_jobs * 100) if sep_pre_jobs != 0 else 0
+        oct_pre_rate = (oct_pre_man / oct_pre_jobs * 100) if oct_pre_jobs != 0 else 0
+        nov_pre_rate = (nov_pre_man / nov_pre_jobs * 100) if nov_pre_jobs != 0 else 0
+        dec_pre_rate = (dec_pre_man / dec_pre_jobs * 100) if dec_pre_jobs != 0 else 0
         return render(
             request,
             'system/kpi_report.html',
@@ -190,6 +214,18 @@ class SystemsKPIReport(View):
                 'oct_cur_man':oct_cur_man,
                 'nov_cur_man':nov_cur_man,
                 'dec_cur_man':dec_cur_man,
+                'jan_pre_rate':jan_pre_rate,
+                'feb_pre_rate':feb_pre_rate,
+                'mar_pre_rate':mar_pre_rate,
+                'apr_pre_rate':apr_pre_rate,
+                'may_pre_rate':may_pre_rate,
+                'jun_pre_rate':jun_pre_rate,
+                'jul_pre_rate':jul_pre_rate,
+                'aug_pre_rate':aug_pre_rate,
+                'sep_pre_rate':sep_pre_rate,
+                'oct_pre_rate':oct_pre_rate,
+                'nov_pre_rate':nov_pre_rate,
+                'dec_pre_rate':dec_pre_rate,
                 'jan_pre_con':jan_pre_con,
                 'feb_pre_con':feb_pre_con,
                 'mar_pre_con':mar_pre_con,
