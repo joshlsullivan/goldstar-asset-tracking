@@ -26,9 +26,9 @@ def process_category(category_uuid):
         name = category['name']
         print(name)
         return name
-    except ValueError as e:
-        print("Error - {}".format(e))
-        pass
+    except ValueError:
+        print("Category error")
+    return
 
 def process_task(customer_resource_url):
     url = customer_resource_url
@@ -98,9 +98,7 @@ def load_jobs():
     auth = ('josh+goldsmith@misllc.com', '9793')
     jobs = requests.get(url, auth=auth).json()
     for job in jobs:
-        print(job)
         client = load_client(job['company_uuid'])
-        print(client)
         try:
             obj1, created = Client.objects.get_or_create(
                 client_uuid=client['uuid'],
@@ -111,9 +109,9 @@ def load_jobs():
             )
             print(obj1)
             obj2, created = Job.objects.get_or_create(
-                job_uuid=obj1,
+                job_uuid=job['uuid'],
                 defaults={
-                    'client':job['company_uuid'],
+                    'client':obj1,
                     'job_category':process_category(job['category_uuid']),
                     'job_date':job['date'],
                 }
