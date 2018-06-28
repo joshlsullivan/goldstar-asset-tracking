@@ -127,11 +127,15 @@ def update_categories():
     auth = ('josh+goldsmith@misllc.com', '9793')
     jobs = requests.get(url, auth=auth).json()
     for job in jobs:
-        category = requests.get('https://api.servicem8.com/api_1.0/category/{}.json'.format(job['category_uuid']), auth=auth).json()
-        old_job = Job.objects.get(job_uuid=job['uuid'])
-        print(old_job)
-        old_job.job_category = category['name']
-        old_job.save()
+        try:
+            category = requests.get('https://api.servicem8.com/api_1.0/category/{}.json'.format(job['category_uuid']), auth=auth).json()
+            old_job = Job.objects.get(job_uuid=job['uuid'])
+            print(old_job)
+            old_job.job_category = category['name']
+            old_job.save()
+        except json.decoder.JSONDecodeError:
+            print("JSON error")
+            continue
     return job
 
 
