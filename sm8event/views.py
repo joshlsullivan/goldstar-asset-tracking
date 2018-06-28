@@ -137,7 +137,7 @@ def update_categories():
         except ValueError:
             print("Error occured")
             continue
-    return job
+        return job
 
 
 @csrf_exempt
