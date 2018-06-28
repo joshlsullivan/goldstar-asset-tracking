@@ -138,6 +138,15 @@ def update_categories():
             continue
     return job
 
+def update_unknown_names():
+    clients = Client.objects.all()
+    for client in clients:
+        if client.name == 'Unknown':
+            get_client = requests.get('https://api.servicem8.com/api_1.0/company/{}.json'.format(client.client_uuid), auth=('josh+goldsmith@misllc.com', '9793'))
+            client.name = get_client['name']
+            client.save()
+            print("Updated client name")
+    return client
 
 @csrf_exempt
 def asset_tracking_event(request):
