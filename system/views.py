@@ -64,29 +64,17 @@ class SystemsKPIReport(View):
         nov_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='N').count()
         dec_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='N').count()
         jan_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='01').count()
-        jan_cur_rate = (jan_cur_man / jan_cur_jobs * 100) if jan_cur_jobs != 0 else 0
         feb_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='02').count()
-        feb_cur_rate = (feb_cur_man / feb_cur_jobs * 100) if feb_cur_jobs != 0 else 0
         mar_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='03').count()
-        mar_cur_rate = (mar_cur_man / mar_cur_jobs * 100) if mar_cur_jobs != 0 else 0
         apr_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='04').count()
-        apr_cur_rate = (apr_cur_man / apr_cur_jobs * 100) if apr_cur_jobs != 0 else 0
         may_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='05').count()
-        may_cur_rate = (may_cur_man / may_cur_jobs * 100) if may_cur_jobs != 0 else 0
         jun_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='06').count()
-        jun_cur_rate = (jun_cur_man / jun_cur_jobs * 100) if jun_cur_jobs != 0 else 0
         jul_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='07').count()
-        jul_cur_rate = (jul_cur_man / jul_cur_jobs * 100) if jul_cur_jobs != 0 else 0
         aug_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='08').count()
-        aug_cur_rate = (aug_cur_man / aug_cur_jobs * 100) if aug_cur_jobs != 0 else 0
         sep_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='09').count()
-        sep_cur_rate = (sep_cur_man / sep_cur_jobs * 100) if sep_cur_jobs != 0 else 0
         oct_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='10').count()
-        oct_cur_rate = (oct_cur_man / oct_cur_jobs * 100) if oct_cur_jobs != 0 else 0
         nov_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='11').count()
-        nov_cur_rate = (nov_cur_man / nov_cur_jobs * 100) if nov_cur_jobs != 0 else 0
         dec_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='12').count()
-        dec_cur_rate = (dec_cur_man / dec_cur_jobs * 100) if dec_cur_jobs != 0 else 0
         jan_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='01').filter(job_category='Maintenance').count()
         feb_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='02').filter(job_category='Maintenance').count()
         mar_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='03').filter(job_category='Maintenance').count()
@@ -99,6 +87,18 @@ class SystemsKPIReport(View):
         oct_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='10').filter(job_category='Maintenance').count()
         nov_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='11').filter(job_category='Maintenance').count()
         dec_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='12').filter(job_category='Maintenance').count()
+        jan_cur_rate = (jan_cur_man / jan_cur_jobs * 100) if jan_cur_jobs != 0 else 0
+        feb_cur_rate = (feb_cur_man / feb_cur_jobs * 100) if feb_cur_jobs != 0 else 0
+        mar_cur_rate = (mar_cur_man / mar_cur_jobs * 100) if mar_cur_jobs != 0 else 0
+        apr_cur_rate = (apr_cur_man / apr_cur_jobs * 100) if apr_cur_jobs != 0 else 0
+        may_cur_rate = (may_cur_man / may_cur_jobs * 100) if may_cur_jobs != 0 else 0
+        jun_cur_rate = (jun_cur_man / jun_cur_jobs * 100) if jun_cur_jobs != 0 else 0
+        jul_cur_rate = (jul_cur_man / jul_cur_jobs * 100) if jul_cur_jobs != 0 else 0
+        aug_cur_rate = (aug_cur_man / aug_cur_jobs * 100) if aug_cur_jobs != 0 else 0
+        sep_cur_rate = (sep_cur_man / sep_cur_jobs * 100) if sep_cur_jobs != 0 else 0
+        oct_cur_rate = (oct_cur_man / oct_cur_jobs * 100) if oct_cur_jobs != 0 else 0
+        nov_cur_rate = (nov_cur_man / nov_cur_jobs * 100) if nov_cur_jobs != 0 else 0
+        dec_cur_rate = (dec_cur_man / dec_cur_jobs * 100) if dec_cur_jobs != 0 else 0
         # Previous year
         jan_pre_con = System.objects.filter(contract_date__year=previous_year).filter(contract_date__month='01').filter(contracted='Y').count()
         feb_pre_con = System.objects.filter(contract_date__year=previous_year).filter(contract_date__month='02').filter(contracted='Y').count()
