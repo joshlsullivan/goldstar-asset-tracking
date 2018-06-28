@@ -101,24 +101,27 @@ def load_jobs():
         print(job)
         client = load_client(job['company_uuid'])
         print(client)
-        obj1, created = Client.objects.get_or_create(
-            client_uuid=client['uuid'],
-            defaults={
-                'name':client['name'],
-                'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
-            }
-        )
-        print(obj1)
-        obj2, created = Job.objects.get_or_create(
-            job_uuid=obj1,
-            defaults={
-                'client':job['company_uuid'],
-                'job_category':process_category(job['category_uuid']),
-                'job_date':job['date'],
-            }
-        )
-        print(obj2)
-        print("Saving job")
+        try:
+            obj1, created = Client.objects.get_or_create(
+                client_uuid=client['uuid'],
+                defaults={
+                    'name':client['name'],
+                    'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
+                }
+            )
+            print(obj1)
+            obj2, created = Job.objects.get_or_create(
+                job_uuid=obj1,
+                defaults={
+                    'client':job['company_uuid'],
+                    'job_category':process_category(job['category_uuid']),
+                    'job_date':job['date'],
+                }
+            )
+            print(obj2)
+            print("Saving job")
+        except ValueError:
+            pass
     return job
 
 @csrf_exempt
