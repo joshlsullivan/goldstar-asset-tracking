@@ -142,7 +142,7 @@ def update_unknown_names():
     clients = Client.objects.all()
     for client in clients:
         if client.name == 'Unknown':
-            get_client = requests.get('https://api.servicem8.com/api_1.0/company/{}.json'.format(client.client_uuid), auth=('josh+goldsmith@misllc.com', '9793'))
+            get_client = requests.get('https://api.servicem8.com/api_1.0/company/{}.json'.format(client.client_uuid), auth=('josh+goldsmith@misllc.com', '9793')).json()
             client.name = get_client['name']
             client.save()
             print("Updated client name")
