@@ -63,7 +63,7 @@ class SystemsKPIReport(View):
         oct_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='10').filter(contracted='N').count()
         nov_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='N').count()
         dec_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='N').count()
-        jan_cur_man = Job.objects.filter(contract_date__year=current_year).filter(contract_date__month='01').filter(job_category='Maintenance').count()
+        jan_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='01').filter(job_category='Maintenance').count()
         return render(
             request,
             'system/kpi_report.html',
