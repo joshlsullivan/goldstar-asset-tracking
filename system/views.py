@@ -64,6 +64,17 @@ class SystemsKPIReport(View):
         nov_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='N').count()
         dec_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='N').count()
         jan_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='01').filter(job_category='Maintenance').count()
+        feb_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='02').filter(job_category='Maintenance').count()
+        mar_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='03').filter(job_category='Maintenance').count()
+        apr_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='04').filter(job_category='Maintenance').count()
+        may_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='05').filter(job_category='Maintenance').count()
+        jun_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='06').filter(job_category='Maintenance').count()
+        jul_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='07').filter(job_category='Maintenance').count()
+        aug_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='08').filter(job_category='Maintenance').count()
+        sep_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='09').filter(job_category='Maintenance').count()
+        oct_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='10').filter(job_category='Maintenance').count()
+        nov_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='11').filter(job_category='Maintenance').count()
+        dec_cur_man = Job.objects.filter(job_date__year=current_year).filter(job_date__month='12').filter(job_category='Maintenance').count()
         return render(
             request,
             'system/kpi_report.html',
@@ -93,5 +104,16 @@ class SystemsKPIReport(View):
                 'nov_cur_non_con':nov_cur_non_con,
                 'dec_cur_non_con':dec_cur_non_con,
                 'jan_cur_man':jan_cur_man,
+                'feb_cur_man':feb_cur_man,
+                'mar_cur_man':mar_cur_man,
+                'apr_cur_man':apr_cur_man,
+                'may_cur_man':may_cur_man,
+                'jun_cur_man':jun_cur_man,
+                'jul_cur_man':jul_cur_man,
+                'aug_cur_man':aug_cur_man,
+                'sep_cur_man':sep_cur_man,
+                'oct_cur_man':oct_cur_man,
+                'nov_cur_man':nov_cur_man,
+                'dec_cur_man':dec_cur_man,
             }
         )
