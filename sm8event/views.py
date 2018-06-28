@@ -21,14 +21,14 @@ auth = (settings.SERVICEM8_ADMIN_USERNAME, settings.SERVICEM8_ADMIN_PASSWORD)
 def process_category(category_uuid):
     url = "https://api.servicem8.com/api_1.0/category/{}.json".format(category_uuid)
     #headers = {'Authorization':'Bearer {}'.format(token)}
-    category = requests.get(url, auth=auth).json()
-    if category is not None:
+    try:
+        category = requests.get(url, auth=auth).json()
         name = category['name']
         print(name)
         return name
-    else:
-        print("No category")
-        return "No category"
+    except ValueError as e:
+        print("Error - {}".format(e))
+        pass
 
 def process_task(customer_resource_url):
     url = customer_resource_url
@@ -98,8 +98,6 @@ def load_jobs():
     auth = ('josh+goldsmith@misllc.com', '9793')
     jobs = requests.get(url, auth=auth).json()
     for job in jobs:
-        job_category = job['category_uuid']
-        print(job_category)
         client = load_client(job['company_uuid'])
         obj1, created = Client.objects.get_or_create(
             client_uuid=client['uuid'],
@@ -108,24 +106,14 @@ def load_jobs():
                 'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
             }
         )
-        if job_category:
-            obj2, created = Job.objects.get_or_create(
-                job_uuid=obj1,
-                defaults={
-                    'client':job['company_uuid'],
-                    'job_category':process_category(job['category_uuid']),
-                    'job_date':job['date'],
-                }
-            )
-        else:
-            obj2, created = Job.objects.get_or_create(
-                job_uuid=obj1,
-                defaults={
-                    'client':job['company_uuid'],
-                    'job_category':'None',
-                    'job_date':job['date'],
-                }
-            )
+        obj2, created = Job.objects.get_or_create(
+            job_uuid=obj1,
+            defaults={
+                'client':job['company_uuid'],
+                'job_category':process_category(job['category_uuid']),
+                'job_date':job['date'],
+            }
+        )
         print("Saving job")
     return job
 
