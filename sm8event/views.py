@@ -136,6 +136,7 @@ def update_categories():
             return True
         except ValueError:
             print("Error occured")
+            continue
     return job
 
 
