@@ -64,7 +64,7 @@ class SystemsKPIReport(View):
         nov_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='11').filter(contracted='N').count()
         dec_cur_non_con = System.objects.filter(contract_date__year=current_year).filter(contract_date__month='12').filter(contracted='N').count()
         jan_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='01').count()
-        jan_cur_rate = (jan_cur_man / jan_cur_jobs * 100) if total_jobs != 0 else 0
+        jan_cur_rate = (jan_cur_man / jan_cur_jobs * 100) if jan_cur_jobs != 0 else 0
         feb_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='02').count()
         mar_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='03').count()
         apr_cur_jobs = Job.objects.filter(job_date__year=current_year).filter(job_date__month='04').count()
