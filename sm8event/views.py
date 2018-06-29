@@ -93,6 +93,21 @@ def load_client(company_uuid):
     client = requests.get(url, auth=auth).json()
     return client
 
+def update_clients():
+    url = 'https://api.servicem8.com/api_1.0/company.json'
+    auth = ('josh+goldsmith@misllc.com', '9793')
+    clients = requests.get(url, auth=auth)
+    for client in clients:
+        c = Client.objects.get_or_create(
+            client_uuid = client['uuid'],
+            defaults = {
+                'name':client['name'],
+                'resource_url':'https://api.servicem8.com/api_1.0/company/{}.json'.format(client['uuid']),
+            }
+        )
+        print("Client {} saved.".format(client['name']))
+    return "Updated all clients"
+
 def load_jobs():
     url = 'https://api.servicem8.com/api_1.0/job.json'
     auth = ('josh+goldsmith@misllc.com', '9793')
