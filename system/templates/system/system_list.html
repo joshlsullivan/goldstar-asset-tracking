@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <th scope="col">Client</th>
+            <th scope="col">System ID</th>
             <th scope="col">System Type</th>
             <th scope="col">Contracted</th>
             <th scope="col">Contract Date</th>
@@ -26,6 +27,7 @@
           {% for system in object_list %}
           <tr>
             <td>{{ system.client.name }}</td>
+            <td>{{ system.id }}</td>
             <td><a href="{% url 'system:system_type' system.system_type %}">{{ system.get_system_type_display }}</a></td>
             <td>{{ system.get_contracted_display }}</td>
             <td>{{ system.contract_date }}</td>
