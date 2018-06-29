@@ -96,7 +96,7 @@ def load_client(company_uuid):
 def update_clients():
     url = 'https://api.servicem8.com/api_1.0/company.json'
     auth = ('josh+goldsmith@misllc.com', '9793')
-    clients = requests.get(url, auth=auth)
+    clients = requests.get(url, auth=auth).json()
     for client in clients:
         c = Client.objects.get_or_create(
             client_uuid = client['uuid'],
