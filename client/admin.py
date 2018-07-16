@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import Client, Job, Task, System
 
-class ClientAdmin(admin.ModelsAdmin):
+class ClientAdmin(admin.ModelAdmin):
     list_display = ('name')
     search_fields = ['name']
 
-class SystemAdmin(admin.ModelsAdmin):
+class SystemAdmin(admin.ModelAdmin):
     list_display = ['client', 'get_system_type_display']
 
 admin.site.register(Client, ClientAdmin)
