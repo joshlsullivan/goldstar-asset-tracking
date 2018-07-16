@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Client, Job, Task, System
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name')
+    list_display = ['name',]
     search_fields = ['name']
 
 class SystemAdmin(admin.ModelAdmin):
