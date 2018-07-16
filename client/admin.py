@@ -7,6 +7,7 @@ class ClientAdmin(admin.ModelAdmin):
 
 class SystemAdmin(admin.ModelAdmin):
     list_display = ['client', 'get_system_type_display']
+    search_fields ['id']
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(System, SystemAdmin)
